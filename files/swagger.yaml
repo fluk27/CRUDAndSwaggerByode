@@ -11,7 +11,7 @@ info:
 servers:
   - url: http://localhost:8080
       # description: in dev device
-  - url: https://us-central1-reactest-6d528.cloudfunctions.net/hello
+  - url: https://crud-firestore-swagger-node.herokuapp.com/
       # description: on could function of firebase
 
 paths:
