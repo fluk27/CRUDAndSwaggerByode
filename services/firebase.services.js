@@ -1,4 +1,4 @@
-const { FBAuthen, FBFirestore,FBAdmin } = require("../functions/config/firebase.init");
+const { FBAuthen, FBFirestore,FBAdmin } = require("../config/firebase.init");
 let resultFB;
 
 //  login with firebase authentication
