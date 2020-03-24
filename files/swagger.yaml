@@ -1,0 +1,148 @@
+openapi: 3.0.0
+
+info:
+  title: DemoAPI Peewlaom system
+  description: demo API documents with swagger 
+  version: '1.0' 
+  contact:
+    name: Peewlao.developer
+    email: wongsathon27@gmail.com
+
+servers:
+  - url: http://localhost:8080
+      # description: in dev device
+  - url: https://us-central1-reactest-6d528.cloudfunctions.net/hello
+      # description: on could function of firebase
+
+paths:
+  /user/register:
+    post:
+      tags:
+      - user
+      description: register of Peewlaom system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        201:
+          description: register successful return JWT
+        409:
+          description: user duplicate
+  /user/login:
+    post:
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+           schema:
+             $ref: '#/components/schemas/UserLogin'
+      description: login of Peewlaom system
+      # summary: Describe this route
+      responses:
+        200:
+          description: logged successful
+        404:
+          description: user empty
+  /user:
+    get:
+      tags:
+        - user
+      description: get all user
+      # summary: Describe this route
+      responses:
+        200:
+          description: get all user with admin only
+        404:
+          description: user empty
+  /user/{id}:
+    get:
+      tags:
+        - user
+      description: Describe this route
+      # summary: Describe this route
+      responses:
+        200:
+          description: get data a user
+        401:
+          description: unauthorized
+        404:
+          description: user empty
+    put:
+      tags:
+        - user
+      description: Describe this route
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+      responses:
+        200:
+          description: updated
+        400:
+          description: user empty
+        401:
+          description: unauthorized
+    delete:
+      tags:
+        - user
+      description: Describe this route
+      # summary: Describe this route
+      responses:
+        204:
+          description: deleted
+        401:
+          description: unauthorized
+        404:
+            description: user empty
+              
+        
+
+
+components:
+  schemas:
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test12345@gmail.com
+          description: email  of user
+        password:
+          type: string
+          example: Ws0844038001
+          description:  password  of user
+    UserRegister:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test123@gmail.com
+          description: email  of user
+        password:
+          type: string
+          example: Ws0844038001
+          description:  password  of user
+        Fname:
+          type: string
+          example: Wongsathon
+          description: firstName of user
+        Lname:
+          type: string
+          example: Sengcharoen
+          description: lastName of user
+        nickName:
+          type: string
+          example: Peewlaom
+          description: nickName of user
+  securitySchemes:
+    jwt:
+     type: http
+     scheme: bearer
+     bearerFormat: JWT
