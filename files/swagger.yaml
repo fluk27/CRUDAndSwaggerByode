@@ -7,10 +7,10 @@ info:
     name: Peewlao.developer
     email: wongsathon27@gmail.com
 servers:
-  - url: http://localhost:8080
-      # description: in dev device
   - url: https://crud-firestore-swagger-node.herokuapp.com/
       # description: on could function of firebase
+  - url: http://localhost:8080
+      # description: in dev device
 paths:
   /user/register:
     post:
