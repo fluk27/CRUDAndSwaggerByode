@@ -7,10 +7,15 @@ const login = (req, res) => {
   FBlogin(req.body.email, req.body.password)
     .then(async result => {
       console.log(`userContollers:${result}`);
-      access_token = await generateJWT(result.user.email);
-      console.log(`access_token:${access_token}`);
-      console.log(`${os.userInfo()}`);
-     return res.status(200).json(access_token);
+      if (result.Error== undefined) {
+        access_token = await generateJWT(result.user.email);
+        console.log(`access_token:${access_token}`);
+        console.log(`${os.userInfo()}`);
+       return res.status(200).json(access_token);
+      } else {
+       return res.status(404).json("user empty");
+      }
+    
     })
     .catch(err => {
       console.error(err);
@@ -67,9 +72,8 @@ const findByID = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-
-  resDeleteUser = await FBDestroyData("users",req.params.id,req.body.email,req.body.password);
-  if (resFindByID.Error) {
+  resDeleteUser = await FBDestroyData("users",parseInt(req.params.id));
+  if (resDeleteUser.Error) {
     res.status(403).json("data empty of user");
   } else {
     res.status(204).json(resDeleteUser);

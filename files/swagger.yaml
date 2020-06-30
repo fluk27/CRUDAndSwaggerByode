@@ -95,6 +95,13 @@ paths:
       tags:
         - user
       description: delete user by id
+      parameters:
+      - in: path
+        name: id
+        description: description
+        required: true
+        schema:
+          type: "integer"
       responses:
         204:
           description: deleted

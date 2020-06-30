@@ -5,7 +5,7 @@ let resultFB;
 const FBlogin = async (email, password) => {
   await FBAuthen.signInWithEmailAndPassword(email, password)
     .then(res => {
-      //   console.dir(`res:${ JSON.stringify(res)}`);
+        console.dir(`res:${ JSON.stringify(res)}`);
       return  resultFB = res
     })
     .catch(err => {
@@ -126,18 +126,25 @@ const FBModifyData = async (ColName,docIndex, data ) => {
 };
 
 // delete data with firebase firestore
-const FBDestroyData = async (ColName, docIndex,email,password) => {
-   resultUid= await FBlogin(email,password)
- await FBAdmin.deleteUser(resultUid.user.uid)
- await FBFirestore.collection(ColName).doc(docIndex).delete()
-    .then(() => {
-      console.log("deleted");
-      resultFB = 'deleted user'
-      return resultFB
-    })
-    .catch(err => {
-      resultFB = { Error: err };
-    });
+const FBDestroyData = async (ColName, docIndex) => {
+  resFindByID= await FBGetDataByID('users',docIndex).then((resultUid) => {
+    resultUid= FBlogin(resFindByID.email,resFindByID.password)
+     FBAdmin.deleteUser(resultUid.user.uid)
+     FBFirestore.collection(ColName).doc(`${docIndex}`).delete()
+       .then(() => {
+         console.log("deleted");
+         resultFB = 'deleted user'
+         return resultFB
+       })
+       .catch(err => {
+         resultFB = { Error: err };
+       });
+  }).catch((err) => {
+    resultFB = { Error: "account empty"};
+  });
+  // console.log(`resFindByID:${JSON.stringify(resFindByID)}`);
+  
+  
   return resultFB;
 };
 module.exports = {FBlogin,FBRegister,FBAddData,FBGetData,FBGetDataByID,FBModifyData,FBDestroyData};

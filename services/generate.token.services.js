@@ -1,3 +1,4 @@
+const {promisify} = require('util')
 const jwt = require("jsonwebtoken");
 const secret = "MIICITANBgkqhkiG9w0BAQEFAAOCAg4AMIICCQKCAgBiOTQ2VXn+p1qi5abIb18h"+
 "qHk7SKVRA5/otpsyXQSE+pba+8TQ/VZPaR/GtLUUZDfWd0FjW3WzETe3hKxr6Q3h"+
@@ -20,7 +21,14 @@ resultJWT= await jwt.sign({ data: data}, secret, { expiresIn:exp })
 };
 
 const verifyJWT = async (accessToken) => {
-  resultJWT= await jwt.verify(accessToken,secret)
+  console.log(`accessToken${accessToken}`);
+  
+  resultJWT= await jwt.verify(accessToken,secret).then((decoded) => {
+    console.log(`decoded:${decoded}`);
+    
+  }).catch((err) => {
+    resultJWT={Error:err}
+  }); 
   return resultJWT
 }
 
