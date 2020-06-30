@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+app.use(cors('*'))
 const swaggerUi = require('swagger-ui-express');
 const {login,register} = require('./controllers/user.controllers')
 const YAML = require('yamljs');
@@ -11,7 +12,6 @@ const port =  process.env.PORT || 8080
 const route = require('./routes/user.routes')
 const authen  =require('./middleware/jwt.middleware')
 app.use(bodyParser.json())
-app.use(cors('*'))
 app.post('/user/login',login)
 app.post('/user/register',register)
 app.use(authen)
