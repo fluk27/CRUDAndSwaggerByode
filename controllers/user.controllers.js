@@ -6,11 +6,11 @@ const login = (req, res) => {
   // FBlogin is function login with firebaseAuthen
   FBlogin(req.body.email, req.body.password)
     .then(async result => {
-      console.log(`userContollers:${result}`);
+    //  console.log(`userContollers:${result}`);
       if (result.Error== undefined) {
         access_token = await generateJWT(result.user.email);
-        console.log(`access_token:${access_token}`);
-        console.log(`${os.userInfo()}`);
+        // console.log(`access_token:${access_token}`);
+        // console.log(`${os.userInfo()}`);
        return res.status(200).json(access_token);
       } else {
        return res.status(404).json("user empty");
@@ -24,7 +24,6 @@ const login = (req, res) => {
 
 const register = async (req, res) => {
   console.log(req.body.email);
-  
   resRegister = await FBRegister(req.body.email, req.body.password);
   if (resRegister.Error) {
     res.status(409).json("user duplicate");
@@ -61,7 +60,7 @@ const findAll = async (req, res) => {
 };
 
 const findByID = async (req, res) => {
-  console.log(`form ID:${req.params.id}`);
+  //console.log(`form ID:${req.params.id}`);
 
   resFindByID = await FBGetDataByID("users", parseInt(req.params.id));
   if (resFindByID.Error) {

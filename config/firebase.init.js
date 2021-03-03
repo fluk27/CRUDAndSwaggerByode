@@ -1,21 +1,21 @@
 const firebase = require("firebase");
 const admin = require("firebase-admin");
 const firebaseConfig = {
-  apiKey: "AIzaSyBjtK1QOewLrdkPnQ-0szDFWQ4ouFNuURY",
-  authDomain: "reactest-6d528.firebaseapp.com",
-  databaseURL: "https://reactest-6d528.firebaseio.com",
-  projectId: "reactest-6d528",
-  storageBucket: "reactest-6d528.appspot.com",
-  messagingSenderId: "556625009111",
-  appId: "1:556625009111:web:0aad4c28a9ed382407d392"
+  apiKey: "AIzaSyAg9pxBbZfVqmPqntwdDwHJnew-MvIABx8",
+  authDomain: "my-project-1505437860011.firebaseapp.com",
+  databaseURL: "https://my-project-1505437860011.firebaseio.com",
+  projectId: "my-project-1505437860011",
+  storageBucket: "my-project-1505437860011.appspot.com",
+  messagingSenderId: "682394484682",
+  appId: "1:682394484682:web:aff6d2000fcc646ee09933"
 };
 
-const serviceAccount = require("./reactest-6d528-firebase-adminsdk-lttc6-820577d3d1.json");
+const serviceAccount = require("./my-project-1505437860011-firebase-adminsdk-s18jw-006eabf807.json");
 
 const FB = firebase.initializeApp(firebaseConfig);
 const firebaseAdmin = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://reactest-6d528.firebaseio.com"
+  databaseURL: "https://my-project-1505437860011.firebaseio.com"
 });
 
 module.exports = {

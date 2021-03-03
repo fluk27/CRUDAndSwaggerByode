@@ -38,11 +38,11 @@ const FBAddData = async (COLName, data) => {
     
     docIndex=parseInt(resultSize)+1
   }
-    console.log(`resultSize:${resultSize}`);
+    //console.log(`resultSize:${resultSize}`);
     data.id=docIndex
     FBFirestore.collection(COLName).doc(`${docIndex}`).set(data)
       .then(() => {
-        console.log("saved user");
+   //     console.log("saved user");
         return resultFB = "saved user"
       })
       .catch(err => {
@@ -62,7 +62,7 @@ const FBGetSizeData = async ColName => {
       result.forEach(doc=>{
       resultFB = doc.id
     })
-    console.log(`result.size:${JSON.stringify(resultFB)}`);
+//    console.log(`result.size:${JSON.stringify(resultFB)}`);
     return resultFB
       
       
@@ -80,7 +80,7 @@ const FBGetData = async (COLName) => {
     .then(resultData => {
       resultData.forEach(data=>{
         dataFromFirebase.push(data.data())
-        console.log(`FBGetData:${JSON.stringify(dataFromFirebase) }`);
+      //  console.log(`FBGetData:${JSON.stringify(dataFromFirebase) }`);
       })
       return resultFB = dataFromFirebase
     })
@@ -93,13 +93,13 @@ const FBGetData = async (COLName) => {
 
 // get data with firebase firestore
 const FBGetDataByID = async (COLName, id) => {
-  console.log('FBGetDataByID='+id);
+ // console.log('FBGetDataByID='+id);
   
   await FBFirestore.collection(COLName).where('id','==',id).get()
     .then(resultData => {
       resultData.forEach(doc=>{
       resultFB=doc.data()
-        console.log(`FBGetDataByID:${resultFB}`);
+     //   console.log(`FBGetDataByID:${resultFB}`);
       })
       return resultFB
      
@@ -115,7 +115,7 @@ const FBGetDataByID = async (COLName, id) => {
 const FBModifyData = async (ColName,docIndex, data ) => {
   await FBFirestore.collection(ColName).doc(`${docIndex}`).set(data,{merge:true})
     .then(() => {
-      console.log("updated");
+     // console.log("updated");
       resultFB = 'updated'
       return resultFB
     })
@@ -132,7 +132,7 @@ const FBDestroyData = async (ColName, docIndex) => {
      FBAdmin.deleteUser(resultUid.user.uid)
      FBFirestore.collection(ColName).doc(`${docIndex}`).delete()
        .then(() => {
-         console.log("deleted");
+         //console.log("deleted");
          resultFB = 'deleted user'
          return resultFB
        })

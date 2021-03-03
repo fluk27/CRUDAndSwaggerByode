@@ -21,10 +21,10 @@ resultJWT= await jwt.sign({ data: data}, secret, { expiresIn:exp })
 };
 
 const verifyJWT = async (accessToken) => {
-  console.log(`accessToken${accessToken}`);
+  //console.log(`accessToken${accessToken}`);
   
   resultJWT= await jwt.verify(accessToken,secret).then((decoded) => {
-    console.log(`decoded:${decoded}`);
+    //console.log(`decoded:${decoded}`);
     
   }).catch((err) => {
     resultJWT={Error:err}
