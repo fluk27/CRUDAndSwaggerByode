@@ -14,9 +14,6 @@ const authen  =require('./middleware/jwt.middleware')
 app.use(bodyParser.json())
 app.post('/user/login',login)
 app.post('/user/register',register)
-app.use(authen)
-app.use(route)
-
 app.get('/mockData', (req, res) => {
   const mockData ={
     payeeProxyId : "612698448287644",
@@ -41,5 +38,8 @@ transactionType : "Domestic Transfer"
   }
   res.status(200).json(mockData)
 })
+app.use(authen)
+app.use(route)
+
 
 app.listen(port, () => console.log(`Example app listening on port port!`))
