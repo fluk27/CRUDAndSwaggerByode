@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const axios = require('axios')
+const qs = require('qs')
 app.use(cors('*'))
 const swaggerUi = require('swagger-ui-express');
 const {login,register} = require('./controllers/user.controllers')
@@ -14,7 +16,7 @@ const authen  =require('./middleware/jwt.middleware')
 app.use(bodyParser.json())
 app.post('/user/login',login)
 app.post('/user/register',register)
-app.get('/mockData', (req, res) => {
+app.get('/Jame//mockData', (req, res) => {
   const mockData ={
     payeeProxyId : "612698448287644",
 payeeProxyType : "BILLERID" ,
@@ -38,6 +40,22 @@ transactionType : "Domestic Transfer"
   }
   res.status(200).json(mockData)
 })
+
+app.post('/Jame/Payment', async (req, res) => {
+
+  const Header={
+    Authorization: 'Bearer s5ZFwpC3BPdrTMF9VtM7qCYDvmerUCGznXOrBiEaScA',
+    'Content-Type': "application/x-www-form-urlencoded"
+  }
+  await axios.post("https://notify-api.line.me/api/notify",qs.stringify({message:JSON.stringify(req.body)}), {headers:Header}).then((result) => {
+   // console.log("payment:",result);
+    
+  }).catch((err) => {
+    console.log(err);
+  });
+  res.send('')
+})
+
 app.use(authen)
 app.use(route)
 
