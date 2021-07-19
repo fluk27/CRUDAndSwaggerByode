@@ -16,7 +16,7 @@ const authen  =require('./middleware/jwt.middleware')
 app.use(bodyParser.json())
 app.post('/user/login',login)
 app.post('/user/register',register)
-app.get('/Jame//mockData', (req, res) => {
+app.get('/Jame/mockData', (req, res) => {
   const mockData ={
     payeeProxyId : "612698448287644",
 payeeProxyType : "BILLERID" ,
