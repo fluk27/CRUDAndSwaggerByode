@@ -41,7 +41,7 @@ transactionType : "Domestic Transfer"
   res.status(200).json(mockData)
 })
 
-app.post('/Jame/Payment', async (req, res) => {
+app.post('/scb/payment/confirm', async (req, res) => {
 
   const Header={
     Authorization: 'Bearer s5ZFwpC3BPdrTMF9VtM7qCYDvmerUCGznXOrBiEaScA',
