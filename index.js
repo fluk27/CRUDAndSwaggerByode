@@ -13,6 +13,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const port =  process.env.PORT || 8080
 const route = require('./routes/user.routes')
 const authen  =require('./middleware/jwt.middleware')
+const {createJob,startJob} = require('./controllers/corn_job.controllers')
 app.use(bodyParser.json())
 app.post('/user/login',login)
 app.post('/user/register',register)
@@ -31,7 +32,8 @@ app.post('/scb/payment/confirm', async (req, res) => {
   });
   res.send('')
 })
-
+app.get("/cjob",createJob)
+app.get("/sjob",startJob)
 app.use(authen)
 app.use(route)
 
