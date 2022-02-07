@@ -21,7 +21,7 @@ app.post('/user/register',register)
 app.post('/scb/payment/confirm', async (req, res) => {
 
   const Header={
-    Authorization: 'Bearer U7t5ettCkKvO5Tr9BXpS8uyaFPJ8iDAYbjlQViaQRXC',
+    Authorization: 'Bearer OwvtsIlnoOAPdfiQb7eq2z2QI8OY9P8GL27HJsfJcyn',
     'Content-Type': "application/x-www-form-urlencoded"
   }
   await axios.post("https://notify-api.line.me/api/notify",qs.stringify({message:JSON.stringify(req.body)}), {headers:Header}).then((result) => {
