@@ -25,7 +25,7 @@
     "node-cron": "^3.0.0",
     "node-rsa": "^1.1.1",
     "nodemon": "^2.0.12",
-    "qs": "^6.10.1",
+    "qs": "^6.10.3",
     "swagger-ui-express": "^4.1.6",
     "yamljs": "^0.3.0"
   },
